@@ -69,3 +69,39 @@ test ("el plan tiene 3 comidas, me debe devolver 3", ()=>{
     expect(comidasObtenidas).toBe(3);
     
 })
+
+//3 Permitir saber la cantidad de comidas de un tipo en particular (DM/AC) de un plan alimenticio.
+test("Envio 4 comidas de tipo DM, me devuelve valor 4",()=>{
+    let plan_alimenticio= new PlanAlimenticio();
+    let comida1=new Comida("DM");
+    let comida2=new Comida("DM");
+    let comida3=new Comida("DM");
+    let comida4=new Comida("DM");
+
+    plan_alimenticio.agregarComida(comida1);
+    plan_alimenticio.agregarComida(comida2);
+    plan_alimenticio.agregarComida(comida3);
+    plan_alimenticio.agregarComida(comida4);
+
+    let obtenido= plan_alimenticio.contTipoDeComida("DM");
+    expect(obtenido).toBe(4);
+})
+
+//4. Permitir saber si el plan alimenticio es “fuerte en proteínas”: 
+    //un plan alimenticio es “fuerte en proteínas” cuando el promedio de porcentaje de proteínas en todas las comidas AC 
+    //es igual o superior al 50%.
+test("de 4 comidas, 3 son AC y 1 es DM, me devuelve TRUE (porque es mayor a 50%)",()=>{
+    let plan_alimenticio= new PlanAlimenticio();
+    let comida1=new Comida("DM");
+    let comida2=new Comida("AC");
+    let comida3=new Comida("AC");
+    let comida4=new Comida("AC");
+
+    plan_alimenticio.agregarComida(comida1);
+    plan_alimenticio.agregarComida(comida2);
+    plan_alimenticio.agregarComida(comida3);
+    plan_alimenticio.agregarComida(comida4);
+
+    let obtenido= plan_alimenticio.esFuerteEnProteinas();
+    expect(obtenido).toBe(true);
+})
