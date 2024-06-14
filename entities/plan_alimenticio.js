@@ -57,4 +57,30 @@ export class PlanAlimenticio{
         const cumplidas = this.comidas.filter(comida => comida.tipo === tipo).length; // Filtrar comidas del tipo especificado
         return Math.round((cumplidas / totalComidasTipo) * 100);
     }
+
+    ///TODO
+    //5. Permitir saber si el plan alimenticio es “bien verde”: un plan alimenticio es “bien verde” 
+    //cuando el promedio de porcentaje de vegetales en todas las comidas AC es superior al 35%.
+    esBienVerde(){
+
+    }
+
+    //6. cantidad de colaciones
+    cantColaciones(){
+        return this.colaciones.length;
+    }
+
+    agregarColacion(colacion){
+        this.colaciones.push(colacion)
+    }
+
+
+    //7. cantidad de bebidas
+    cantBebidas(){
+        return this.bebidas.length;
+    }
+
+    agregarBebida(bebida){
+        this.bebidas.push(bebida)
+    }
 }
