@@ -1,0 +1,49 @@
+----Entities----
+
+-Profesionales:
+Nombre*;
+Apellido*;
+Especialidad*; 
+Matrícula;
+
+-Pacientes:
+Nombre*;
+Apellido*; 
+Edad*; 
+Sexo*;
+Disciplina*;
+
+-PlanAlimenticio:
+pesoActual;
+medidaCintura;
+duracion(semanal,quincenal,mensual);
+edad;
+objetivos(necesito saber si esta cumplido o no)
+comidas[];
+colaciones[coleccion de colaciones]
+bebidas[coleccion de bebidas]
+
+-Comida
+tipo(desayuno, merienda,almuerzo,cena);
+descripcion;
+composicion[coleccion de ingredientes con sus caracteristicas (nombre,tipo,porcentaje)];
+
+-Ingrediente:
+nombre;
+tipo;
+porcentaje;
+
+-Colacion:
+
+-Bebidas:
+
+
+------------------------------------------
+---Metodos---
+
+Profesionales:
+Pacientes:
+PlanAlimenticio:
+Comida:
+Ingrediente:
+Colacion:
