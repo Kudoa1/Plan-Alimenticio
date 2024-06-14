@@ -3,5 +3,7 @@ export class Comida{
     descripcion;
     composicion=[];
 
-    
+    constructor(tipo){
+        this.tipo=tipo;
+    }
 }

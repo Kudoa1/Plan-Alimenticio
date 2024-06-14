@@ -32,4 +32,29 @@ export class PlanAlimenticio{
         const cumplidos = this.objetivos.filter(objetivo => objetivo.cumplido).length;
         return Math.round((cumplidos / this.cantidadDeObjetivos()) * 100);
     }
+
+
+    //3. Permitir saber la cantidad de comidas de un tipo en particular (DM/AC) de un plan alimenticio.
+    contTipoDeComida(tipo){
+        let contTipo=0;
+        for(let i=0;i<this.comidas.length;i++){
+            if(this.comidas[i].tipo==tipo){contTipo++}
+        }
+        return contTipo;
+    }
+
+
+    //4. Permitir saber si el plan alimenticio es “fuerte en proteínas”: 
+    //un plan alimenticio es “fuerte en proteínas” cuando el promedio de porcentaje de proteínas en todas las comidas AC 
+    //es igual o superior al 50%.
+    esFuerteEnProteinas(){
+        return this.porcentajeDeTipoComida("AC")>=50
+    }
+
+    porcentajeDeTipoComida(tipo){
+        const totalComidasTipo = this.contTipoDeComida(tipo); // Obtener el total de comidas del tipo especificado
+        if (totalComidasTipo === 0) {return 0;} // Si no hay comidas de ese tipo, el porcentaje es cero
+        const cumplidas = this.comidas.filter(comida => comida.tipo === tipo).length; // Filtrar comidas del tipo especificado
+        return Math.round((cumplidas / totalComidasTipo) * 100);
+    }
 }
