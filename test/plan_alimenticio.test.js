@@ -1,6 +1,8 @@
 import { PlanAlimenticio } from "../entities/plan_alimenticio";
 import { Objetivo } from "../entities/objetivo";
 import {Comida} from "../entities/comida";
+import {Bebida} from "../entities/bebida"
+import {Colacion} from "../entities/colacion"
 
 //1. Permitir obtener la calificación final de un plan alimenticio, en base al cumplimiento de sus objetivos.
 test ("me devuelve Excelente ya que todos los objetivos se cumplieron", ()=>{
@@ -104,4 +106,38 @@ test("de 4 comidas, 3 son AC y 1 es DM, me devuelve TRUE (porque es mayor a 50%)
 
     let obtenido= plan_alimenticio.esFuerteEnProteinas();
     expect(obtenido).toBe(true);
+})
+
+//6. cant colaciones
+test("tengo 4 colaciones, me devuelve valor 4",()=>{
+    let plan_alimenticio= new PlanAlimenticio();
+    let colacion2=new Colacion();
+    let colacion3=new Colacion();
+    let colacion1=new Colacion();
+    let colacion4=new Colacion();
+
+    plan_alimenticio.agregarColacion(colacion1);
+    plan_alimenticio.agregarColacion(colacion2);
+    plan_alimenticio.agregarColacion(colacion3);
+    plan_alimenticio.agregarColacion(colacion4);
+
+    let obtenido= plan_alimenticio.cantColaciones();
+    expect(obtenido).toBe(4);
+})
+
+//7. cant bebidas
+test("tengo 4 bebidas, me devuelve valor 4",()=>{
+    let plan_alimenticio= new PlanAlimenticio();
+    let bebida1=new Bebida();
+    let bebida2=new Bebida();
+    let bebida3=new Bebida();
+    let bebida4=new Bebida();
+
+    plan_alimenticio.agregarBebida(bebida1);
+    plan_alimenticio.agregarBebida(bebida2);
+    plan_alimenticio.agregarBebida(bebida3);
+    plan_alimenticio.agregarBebida(bebida4);
+
+    let obtenido= plan_alimenticio.cantBebidas();
+    expect(obtenido).toBe(4);
 })
