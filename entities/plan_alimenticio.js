@@ -47,40 +47,27 @@ export class PlanAlimenticio{
     //4. Permitir saber si el plan alimenticio es “fuerte en proteínas”: 
     //un plan alimenticio es “fuerte en proteínas” cuando el promedio de porcentaje de proteínas en todas las comidas AC 
     //es igual o superior al 50%.
-    esFuerteEnProteinas(){
-        return this.porcentajeDeTipoComida("AC")>=50
+
+    obtenerAC(){return this.comidas.filter(c=>c.tipo == "AC")}
+    tipoComidaCumplePorcentaje(tipo,valor){
+        let comidas=this.obtenerAC();
+        return comidas.every(c=>c.obtenerPorcentajeComida(tipo)>valor);
     }
 
-    porcentajeDeTipoComida(tipo){
-        const totalComidasTipo = this.contTipoDeComida(tipo); // Obtener el total de comidas del tipo especificado
-        if (totalComidasTipo === 0) {return 0;} // Si no hay comidas de ese tipo, el porcentaje es cero
-        const cumplidas = this.comidas.filter(comida => comida.tipo === tipo).length; // Filtrar comidas del tipo especificado
-        return Math.round((cumplidas / totalComidasTipo) * 100);
-    }
+    esFuerteEnProteinas(){return this.tipoComidaCumplePorcentaje("proteina",50);}
 
-    ///TODO
     //5. Permitir saber si el plan alimenticio es “bien verde”: un plan alimenticio es “bien verde” 
     //cuando el promedio de porcentaje de vegetales en todas las comidas AC es superior al 35%.
-    esBienVerde(){
-        
-    }
+    esBienVerde(){return this.tipoComidaCumplePorcentaje("vegetal",35);}
 
     //6. cantidad de colaciones
-    cantColaciones(){
-        return this.colaciones.length;
-    }
+    cantColaciones(){return this.colaciones.length;}
 
-    agregarColacion(colacion){
-        this.colaciones.push(colacion)
-    }
+    agregarColacion(colacion){this.colaciones.push(colacion)}
 
 
     //7. cantidad de bebidas
-    cantBebidas(){
-        return this.bebidas.length;
-    }
+    cantBebidas(){return this.bebidas.length;}
 
-    agregarBebida(bebida){
-        this.bebidas.push(bebida)
-    }
+    agregarBebida(bebida){this.bebidas.push(bebida)}
 }
