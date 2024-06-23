@@ -3,6 +3,7 @@ import { Objetivo } from "../entities/objetivo";
 import {Comida} from "../entities/comida";
 import {Bebida} from "../entities/bebida"
 import {Colacion} from "../entities/colacion"
+import { Ingrediente } from "../entities/ingrediente";
 
 //1. Permitir obtener la calificación final de un plan alimenticio, en base al cumplimiento de sus objetivos.
 test ("me devuelve Excelente ya que todos los objetivos se cumplieron", ()=>{
@@ -92,12 +93,34 @@ test("Envio 4 comidas de tipo DM, me devuelve valor 4",()=>{
 //4. Permitir saber si el plan alimenticio es “fuerte en proteínas”: 
     //un plan alimenticio es “fuerte en proteínas” cuando el promedio de porcentaje de proteínas en todas las comidas AC 
     //es igual o superior al 50%.
-test("de 4 comidas, 3 son AC y 1 es DM, me devuelve TRUE (porque es mayor a 50%)",()=>{
+test("Tengo 4 comidas, de las cuales 3 su composicion es de proteinas, espero que devuelva TRUE",()=>{
+    //creamos plan, creamos comidas(las agregamos a comidas[]), luego llamamos a esFuerteEnProteinas() y nos devuelve true/false
+    //Datos: 4 comidas, de las cuales agregamos su composicion[] de ingredientes, 3 de estas son proteinas y la otra es vegetal
+    //esperado: True
     let plan_alimenticio= new PlanAlimenticio();
-    let comida1=new Comida("DM");
+    let comida1=new Comida("AC");
     let comida2=new Comida("AC");
     let comida3=new Comida("AC");
     let comida4=new Comida("AC");
+
+    //Creamos los  objetos ingredientes, insertarlos como string está mal porque son OBJETOS
+    let proteina1 = new Ingrediente();
+        proteina1.tipo = "proteina";
+        proteina1.porcion = 100;
+    let proteina2 = new Ingrediente();
+        proteina2.tipo = "proteina";
+        proteina2.porcion = 100;
+    let proteina3 = new Ingrediente();
+        proteina3.tipo = "proteina";
+        proteina3.porcion = 100;
+    let vegetal = new Ingrediente();
+        vegetal.tipo = "vegetal";
+        vegetal.porcion = 100;
+
+    comida1.agregarIngrediente(proteina1);
+    comida2.agregarIngrediente(proteina2);
+    comida3.agregarIngrediente(proteina3);
+    comida4.agregarIngrediente(vegetal);
 
     plan_alimenticio.agregarComida(comida1);
     plan_alimenticio.agregarComida(comida2);

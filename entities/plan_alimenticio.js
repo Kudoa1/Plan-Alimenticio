@@ -49,9 +49,17 @@ export class PlanAlimenticio{
     //es igual o superior al 50%.
 
     obtenerAC(){return this.comidas.filter(c=>c.tipo == "AC")}
+
     tipoComidaCumplePorcentaje(tipo,valor){
         let comidas=this.obtenerAC();
-        return comidas.every(c=>c.obtenerPorcentajeComida(tipo)>valor);
+        // return comidas.every(c=>c.obtenerPorcentajeComida(tipo)>=valor);
+        let totalPorcentaje = 0;
+        comidas.forEach(c => {
+            totalPorcentaje += c.obtenerPorcentajeComida(tipo);
+        });
+    
+        let promedioPorcentaje = totalPorcentaje / comidas.length;
+        return promedioPorcentaje >= valor;
     }
 
     esFuerteEnProteinas(){return this.tipoComidaCumplePorcentaje("proteina",50);}

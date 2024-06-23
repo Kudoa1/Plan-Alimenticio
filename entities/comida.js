@@ -30,16 +30,24 @@ export class Comida{
         this.composicion.forEach(ing => {
             porcionTotal+=ing.porcion;
             switch (ing.tipo){
-                case "proteina":porcionProteina+=ing.porcion;
-                case "carbohidrato": porcionCarbohidrato+=ing.porcion;
-                case "vegetal": porcionVegetal+=ing.porcion;
+                case "proteina":
+                    porcionProteina+=ing.porcion;
+                    break;
+                case "carbohidrato":
+                    porcionCarbohidrato+=ing.porcion;
+                    break;
+                case "vegetal":
+                    porcionVegetal+=ing.porcion;
+                    break;
             }
         })
 
         //calculo el porcentaje de cada tipo de la porcion total
-        porcentajeProteina=this.porcentaje(porcionTotal,porcionProteina);
-        porcentajeCarbohidrato=this.porcentaje(porcionTotal,porcionCarbohidrato);
-        porcentajeVegetal=this.porcentaje(porcionTotal,porcionVegetal);
+        if(porcionTotal > 0){
+            porcentajeProteina=this.porcentaje(porcionTotal,porcionProteina);
+            porcentajeCarbohidrato=this.porcentaje(porcionTotal,porcionCarbohidrato);
+            porcentajeVegetal=this.porcentaje(porcionTotal,porcionVegetal);
+        }
 
         return {porcionTotal, porcentajeProteina, porcentajeCarbohidrato, porcentajeVegetal}
     }
@@ -47,13 +55,14 @@ export class Comida{
     porcentaje(total,valor){return (100/total)*valor}
 
     obtenerPorcentajeComida(tipo){
-        let indice;
+        //guardamos el OBJETO del Resultado de la funcion y accedemos a sus PROPIEDADES (porcentajes)
+        const composicion = this.calcularComposicionComida();
         switch (tipo){
-            case "proteina":indice=1;
-            case "carbohidrato":indice=2;
-            case "vegetal":indice=3;
+            case "proteina": return composicion.porcentajeProteina;
+            case "carbohidrato": return composicion.porcentajeCarbohidrato;
+            case "vegetal": return composicion.porcentajeVegetal;
+            default: return 0;
         }
-        return this.calcularComposicionComida()[indice];
     }
 
 
