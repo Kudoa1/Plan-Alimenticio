@@ -131,6 +131,73 @@ test("Tengo 4 comidas, de las cuales 3 su composicion es de proteinas, espero qu
     expect(obtenido).toBe(true);
 })
 
+//5. Permitir saber si el plan alimenticio es “bien verde”: un plan alimenticio es “bien verde” cuando el promedio
+//   de porcentaje de vegetales en todas las comidas AC es superior al 35%.
+//CASO 1: toBe(true)
+test("",()=>{
+    //creamos el plan, comidas e ingredientes, les asignamos valores a cada uno y lo vamos metiendo dentro del otro
+    //luego en plan alimenticio invocamos la funcion esBienVerde, y esperamos que nos devuelva TRUE
+
+        let plan_alimenticio= new PlanAlimenticio();
+    let comida1=new Comida("AC");
+    let comida2=new Comida("AC");
+    let comida4=new Comida("AC");
+
+    //Creamos los  objetos ingredientes, insertarlos como string está mal porque son OBJETOS
+    let proteina1 = new Ingrediente();
+        proteina1.tipo = "proteina";
+        proteina1.porcion = 100;
+    let proteina2 = new Ingrediente();
+        proteina2.tipo = "vegetal";
+        proteina2.porcion = 100;
+    let vegetal = new Ingrediente();
+        vegetal.tipo = "vegetal";
+        vegetal.porcion = 100;
+
+    comida1.agregarIngrediente(proteina1);
+    comida2.agregarIngrediente(proteina2);
+    comida4.agregarIngrediente(vegetal);
+
+    plan_alimenticio.agregarComida(comida1);
+    plan_alimenticio.agregarComida(comida2);
+    plan_alimenticio.agregarComida(comida4);
+
+    let obtenido= plan_alimenticio.esBienVerde();
+    expect(obtenido).toBe(true);
+})
+//CASO 2: toBe(false)
+test("",()=>{
+    //creamos el plan, comidas e ingredientes, les asignamos valores a cada uno y lo vamos metiendo dentro del otro
+    //luego en plan alimenticio invocamos la funcion esBienVerde, y esperamos que nos devuelva TRUE
+
+        let plan_alimenticio= new PlanAlimenticio();
+    let comida1=new Comida("AC");
+    let comida2=new Comida("AC");
+    let comida4=new Comida("AC");
+
+    //Creamos los  objetos ingredientes, insertarlos como string está mal porque son OBJETOS
+    let proteina1 = new Ingrediente();
+        proteina1.tipo = "proteina";
+        proteina1.porcion = 100;
+    let proteina2 = new Ingrediente();
+        proteina2.tipo = "proteina";
+        proteina2.porcion = 100;
+    let vegetal = new Ingrediente();
+        vegetal.tipo = "vegetal";
+        vegetal.porcion = 100;
+
+    comida1.agregarIngrediente(proteina1);
+    comida2.agregarIngrediente(proteina2);
+    comida4.agregarIngrediente(vegetal);
+
+    plan_alimenticio.agregarComida(comida1);
+    plan_alimenticio.agregarComida(comida2);
+    plan_alimenticio.agregarComida(comida4);
+
+    let obtenido= plan_alimenticio.esBienVerde();
+    expect(obtenido).toBe(false);
+})
+
 //6. cant colaciones
 test("tengo 4 colaciones, me devuelve valor 4",()=>{
     let plan_alimenticio= new PlanAlimenticio();
